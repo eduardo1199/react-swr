@@ -1,0 +1,24 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Eduardo Soares",
+      "course": "Engenharia da computação"
+    },
+    {
+      "id": "2",
+      "name": "Cleiton",
+      "course": "Engenharia da computação"
+    },
+    {
+      "id": "3",
+      "name": "Vini",
+      "course": "Engenharia da computação"
+    },
+    {
+      "id": "4",
+      "name": "Alberto",
+      "course": "Engenharia da computação"
+    }
+  ]
+}
