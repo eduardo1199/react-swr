@@ -1,34 +1,17 @@
-import { useEffect, useState } from "react"
+import { Routes } from "./Routes";
+import { defaultTheme } from './pages/styles/theme/defaultTheme';
 
-import { useNavigate } from 'react-router-dom'
+import { GlobalStyle } from './pages/styles/global'
 
-export type Profile =  {
-  id: string;
-  name: string;
-  course: string;
-}
+import { ThemeProvider } from 'styled-components'
 
 function App() {
-  const [profiles, setProfiles] = useState<Profile[]>([])
-
-  const navigator = useNavigate()
-
-  useEffect(() => {
-    fetch('http://localhost:3333/users').then((response) => {
-      response.json().then((jsonResponse) => {
-        setProfiles(jsonResponse)
-      })
-    })
-  }, [])
-
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-      {profiles.map((profile) => {
-        return (
-          <button key={profile.id} onClick={() => navigator(`/profile/${profile.id}`)}>{profile.name}</button>
-        )
-      })}
-    </div>
+    <ThemeProvider theme={defaultTheme}>
+      <Routes />
+
+      <GlobalStyle />
+    </ThemeProvider>
   )
 }
 
