@@ -2,17 +2,17 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import App from "./App";
-import { ProfileView } from "./pages/Profile";
+import { Issues } from "./pages/Issues";
+import { Public } from "./pages/Public";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <Public />,
   },
   {
-    path: "/profile/:id",
-    element: <ProfileView />,
+    path: "/issues/:id",
+    element: <Issues />,
   },
 ])
 
