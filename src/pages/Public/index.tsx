@@ -1,11 +1,19 @@
 import { Container, ImageContainer, Content, Profile, ProfileInfo, CarrouselGit, InputPublic, GridContainer } from './styles.ts'
 
 import Cover from '../../assets/cover.png'
-import { GithubLogo, Share, Users } from 'phosphor-react'
+import { GithubLogo, Package, Share, Users } from 'phosphor-react'
 
 import { Post } from '../../components/Post'
+import { useUserFetch } from '../../api/useUserFetch.ts'
+
 
 export function Public() {
+  const { user, isLoading } = useUserFetch({ username: 'eduardo1199' })
+
+  if(isLoading || !user) {
+    return 'Carregando...'
+  }
+
   return (
     <Container>
       <ImageContainer>
@@ -14,25 +22,29 @@ export function Public() {
 
       <Content>
         <Profile>
-          <img src="https://github.com/eduardo1199.png" alt="" />
+          <img src={user.avatar_url} alt="" />
 
           <ProfileInfo>
-            <strong>Eduardo Soares</strong>
+            <strong>{user.name}</strong>
             <a href="https://github.com/eduardo1199" target="_blank">
               GITHUB
               <Share />
             </a>
             <p>
-              Tristique volutpat pulvinar vel massa, pellentesque egestas. Eu viverra massa quam dignissim aenean malesuada suscipit. Nunc, volutpat pulvinar vel mass.
+            {user.bio}
             </p>
             <CarrouselGit>
               <div>
                 <GithubLogo />
-                <span>Eduardo</span>
+                <span>{user.name}</span>
               </div>
               <div>
                 <Users />
-                <span>32 seguidos</span>
+                <span>{user.followers} seguidos</span>
+              </div>
+              <div>
+                <Package />
+                <span>{user.public_repos} repositórios</span>
               </div>
             </CarrouselGit>
           </ProfileInfo>
