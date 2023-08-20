@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 export const CardPost = styled.button`
   display: flex;
+  flex-wrap: wrap;
+
   flex-direction: column;
   flex: 1;
 

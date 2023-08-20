@@ -1,14 +1,22 @@
-import { Container, ImageContainer, Content, Profile, ProfileInfo, CarrouselGit, InputPublic, GridContainer } from './styles.ts'
+import { Container, ImageContainer, Content, Profile, ProfileInfo, CarrouselGit } from './styles.ts'
 
 import Cover from '../../assets/cover.png'
 import { GithubLogo, Package, Share, Users } from 'phosphor-react'
 
-import { Post } from '../../components/Post'
 import { useUserFetch } from '../../api/useUserFetch.ts'
+import { ContentPublic } from './ContentPublic/index.tsx'
+
+interface UserFetchResponse {
+  name: string
+  bio: string
+  followers: number
+  public_repos: number
+  avatar_url: string
+}
 
 
 export function Public() {
-  const { user, isLoading } = useUserFetch({ username: 'eduardo1199' })
+  const { user, isLoading } = useUserFetch<UserFetchResponse>({ username: 'eduardo1199' })
 
   if(isLoading || !user) {
     return 'Carregando...'
@@ -49,40 +57,8 @@ export function Public() {
             </CarrouselGit>
           </ProfileInfo>
         </Profile>
-        <InputPublic>
-          <div>
-            <h1>Publicações</h1>
-            <span>6 publicações</span>
-          </div>
-          <input type="text" placeholder='Buscar conteúdo' />
-        </InputPublic>
-        <GridContainer>
-          <Post 
-            about='Programming languages all have built-in data structures, but these often differ from one language to another. This article attempts to list the built-in data structures available in'
-            datePosted='Há 1 dia'
-            title='JavaScript data types and data structures'
-          />
-          <Post 
-            about='Programming languages all have built-in data structures, but these often differ from one language to another. This article attempts to list the built-in data structures available in'
-            datePosted='Há 1 dia'
-            title='JavaScript data types and data structures'
-          />
-          <Post 
-            about='Programming languages all have built-in data structures, but these often differ from one language to another. This article attempts to list the built-in data structures available in'
-            datePosted='Há 1 dia'
-            title='JavaScript data types and data structures'
-          />
-          <Post 
-            about='Programming languages all have built-in data structures, but these often differ from one language to another. This article attempts to list the built-in data structures available in'
-            datePosted='Há 1 dia'
-            title='JavaScript data types and data structures'
-          />
-          <Post 
-            about='Programming languages all have built-in data structures, but these often differ from one language to another. This article attempts to list the built-in data structures available in'
-            datePosted='Há 1 dia'
-            title='JavaScript data types and data structures'
-          />
-        </GridContainer>
+        
+        <ContentPublic />
       </Content>
     </Container>
   )
