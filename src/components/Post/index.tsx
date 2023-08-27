@@ -1,19 +1,22 @@
 import { useNavigate } from 'react-router-dom'
 import { CardPost } from './styles'
+import { formattedDistance } from '../../utils/formatted-date'
 
 interface PostProps {
   title: string
   datePosted: string
   about: string
-  url: string
+  issueNumber: number
 }
 
-export function Post({ about,datePosted, title, url }: PostProps) {
+export function Post({ about,datePosted, title, issueNumber }: PostProps) {
   const navigate = useNavigate()
 
   function handleNavigateToRepo() {
-    navigate(url)
+    navigate(`/issues/${issueNumber}`)
   }
+
+  const distance = formattedDistance(datePosted)
 
   return (
     <CardPost onClick={() => handleNavigateToRepo()}>
@@ -22,7 +25,7 @@ export function Post({ about,datePosted, title, url }: PostProps) {
           {title}
         </h1>
         <span>
-          {datePosted}
+          Há {distance}
         </span>
       </div>
       <p>

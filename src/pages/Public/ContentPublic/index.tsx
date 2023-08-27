@@ -9,7 +9,7 @@ interface Issues {
   items: {
     title: string;
     body: string;
-    url: string;
+    number: number
     created_at: string
   }[]
 }
@@ -17,12 +17,12 @@ interface Issues {
 export function ContentPublic() {
   const [search, setSearch] = useState('')
 
-  const { issues } = useIssueFetch<Issues>(search)
+  const { issues } = useIssueFetch<Issues>({ username: 'eduardo1199', q: search })
 
 
   return (
     <>
-      <InputPublic>
+        <InputPublic>
           <div>
             <h1>Publicações</h1>
             <span>6 publicações</span>
@@ -36,7 +36,7 @@ export function ContentPublic() {
                 about={issue.body}
                 datePosted={issue.created_at}
                 title={issue.title}
-                url={issue.url}
+                issueNumber={issue.number}
               />
             )
           })}

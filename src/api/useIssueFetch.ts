@@ -2,8 +2,13 @@ import { fetchIssues } from '../cases/fetchIssues'
 
 import useSWR from 'swr'
 
-export function useIssueFetch<T>(q?: string) {
-  const { data: issues , error, isLoading } = useSWR<T, string>(`/search/issues?q=${q}`, fetchIssues)
+interface UseIssueFetch {
+  q?: string
+  username: string
+}
+
+export function useIssueFetch<T>({ username, q }: UseIssueFetch) {
+  const { data: issues , error, isLoading } = useSWR<T, string>(`/search/issues?q=${q}%20repo:${username}/react-swr`, fetchIssues)
 
   return {
     issues,
