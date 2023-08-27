@@ -2,6 +2,7 @@ import styled from "styled-components"
 
 export const InputPublic = styled.div`
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
 
   margin-top: 4.5rem;
